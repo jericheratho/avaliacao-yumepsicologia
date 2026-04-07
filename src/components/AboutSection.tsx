@@ -1,3 +1,5 @@
+import ezequiasPhoto from "@/assets/ezequias-photo.jpg";
+
 const credentials = [
   "Mestrando em Cultura e Sociedade — Universidade Federal da Bahia (UFBA)",
   "Neuropsicólogo — UNIFACS",
