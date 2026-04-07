@@ -1,3 +1,5 @@
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 const assessments = [
   {
     title: "Avaliação Psicológica",
@@ -26,13 +28,15 @@ const assessments = [
 ];
 
 const AssessmentSection = () => {
+  const { ref, visible } = useScrollReveal(0.1);
+
   return (
-    <section className="section-padding">
+    <section className="section-padding" ref={ref}>
       <div className="max-w-5xl mx-auto">
-        <p className="text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4">
+        <p className={`text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           Entenda a diferença
         </p>
-        <h2 className="text-4xl md:text-5xl font-serif font-light text-foreground mb-16">
+        <h2 className={`text-4xl md:text-5xl font-serif font-light text-foreground mb-16 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           Avaliação psicológica ou
           <br />
           neuropsicológica?
@@ -42,7 +46,10 @@ const AssessmentSection = () => {
           {assessments.map((a, i) => (
             <div
               key={i}
-              className="bg-card border border-border rounded-2xl p-8 md:p-10 hover:shadow-lg hover:border-sage/40 transition-all duration-500"
+              className={`bg-card border border-border rounded-2xl p-8 md:p-10 hover:shadow-lg hover:border-sage/40 transition-all duration-700 ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: `${200 + i * 150}ms` }}
             >
               <h3 className="text-2xl font-serif font-light text-foreground mb-1">{a.title}</h3>
               <p className="text-sm font-sans text-primary mb-4">{a.subtitle}</p>
