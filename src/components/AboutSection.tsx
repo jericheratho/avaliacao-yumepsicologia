@@ -47,21 +47,15 @@ const AboutSection = () => {
                 Também pesquiso — porque acredito que a clínica precisa dialogar com a cultura, com o corpo, com o que somos além do diagnóstico.
               </p>
             </div>
-          </div>
 
-          <div className="md:col-span-2">
-            <div className="bg-muted/50 rounded-2xl p-8">
-              <h4 className="text-xs font-sans uppercase tracking-[0.2em] text-primary/60 mb-6">
-                Formação
-              </h4>
-              <ul className="space-y-4">
+            <div className="bg-muted/50 rounded-2xl p-8 mt-8">
+              <h4 className="text-xs font-sans uppercase tracking-[0.2em] text-primary/60 mb-6">Formação</h4>
+              <ul className="space-y-3">
                 {credentials.map((c, i) => (
-                  <li key={i} className="text-sm font-sans text-foreground/70 leading-relaxed">
-                    {c}
-                  </li>
+                  <li key={i} className="text-sm font-sans text-foreground/70 leading-relaxed">{c}</li>
                 ))}
               </ul>
-              <div className="mt-8 pt-6 border-t border-border">
+              <div className="mt-6 pt-4 border-t border-border">
                 <p className="text-xs font-sans text-muted-foreground leading-relaxed">
                   Pesquisa: corpo, estética, literatura, subjetividade, gênero e sexualidade
                 </p>
