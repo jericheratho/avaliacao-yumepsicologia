@@ -1,11 +1,25 @@
+import { useEffect, useRef, useState } from "react";
+
 const steps = [
-  { label: "Como você sente", color: "bg-sage-light" },
-  { label: "Como você processa", color: "bg-sage" },
-  { label: "Como você pensa", color: "bg-primary" },
-  { label: "Como você se relaciona", color: "bg-warm" },
+  { label: "Como você\nsente", color: "#bee5ac" },
+  { label: "Como você\nprocessa", color: "#86ae72" },
+  { label: "Como você\npensa", color: "#5f8849" },
+  { label: "Como você se\nrelaciona", color: "#8d786f" },
 ];
 
 const ProcessSection = () => {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.2 }
+    );
+    if (svgRef.current) observer.observe(svgRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="como-funciona" className="section-padding">
       <div className="max-w-5xl mx-auto">
@@ -23,31 +37,143 @@ const ProcessSection = () => {
           Cada mente é um mapa diferente. E o seu ainda está por ser desenhado.
         </p>
 
-        {/* Visual diagram */}
+        {/* Circular mind map diagram */}
         <div className="flex flex-col items-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 w-full max-w-2xl">
-            {steps.map((s, i) => (
-              <div
-                key={i}
-                className={`${s.color} rounded-2xl p-6 text-center flex items-center justify-center min-h-[120px] animate-float`}
-                style={{ animationDelay: `${i * 0.5}s` }}
+          <svg
+            ref={svgRef}
+            viewBox="0 0 600 600"
+            className="w-full max-w-lg"
+            aria-label="Diagrama circular: Como você sente, processa, pensa e se relaciona convergem para Você, compreendido"
+          >
+            {/* Outer ring - dashed orbit */}
+            <circle
+              cx="300" cy="300" r="220"
+              fill="none"
+              stroke="#b5c5ac"
+              strokeWidth="1"
+              strokeDasharray="6 6"
+              className={`transition-all duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
+            />
+
+            {/* Connecting lines from nodes to center */}
+            {steps.map((_, i) => {
+              const angle = (i * 90 - 90) * (Math.PI / 180);
+              const x = 300 + 220 * Math.cos(angle);
+              const y = 300 + 220 * Math.sin(angle);
+              return (
+                <line
+                  key={`line-${i}`}
+                  x1={x} y1={y} x2="300" y2="300"
+                  stroke="#b5c5ac"
+                  strokeWidth="1"
+                  strokeDasharray="4 4"
+                  className={`transition-all duration-700 ${visible ? "opacity-60" : "opacity-0"}`}
+                  style={{ transitionDelay: `${400 + i * 150}ms` }}
+                />
+              );
+            })}
+
+            {/* Inner subtle ring */}
+            <circle
+              cx="300" cy="300" r="110"
+              fill="none"
+              stroke="#b5c5ac"
+              strokeWidth="0.5"
+              strokeDasharray="3 5"
+              className={`transition-all duration-1000 ${visible ? "opacity-40" : "opacity-0"}`}
+              style={{ transitionDelay: "300ms" }}
+            />
+
+            {/* Orbit nodes */}
+            {steps.map((step, i) => {
+              const angle = (i * 90 - 90) * (Math.PI / 180);
+              const cx = 300 + 220 * Math.cos(angle);
+              const cy = 300 + 220 * Math.sin(angle);
+              const r = 62;
+              const lines = step.label.split("\n");
+              const isLight = i === 0;
+
+              return (
+                <g
+                  key={i}
+                  className={`transition-all duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
+                  style={{ transitionDelay: `${i * 200}ms` }}
+                >
+                  <circle
+                    cx={cx} cy={cy} r={r}
+                    fill={step.color}
+                    className="drop-shadow-sm"
+                  />
+                  {lines.map((line, li) => (
+                    <text
+                      key={li}
+                      x={cx}
+                      y={cy + (li - (lines.length - 1) / 2) * 16}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fill={isLight ? "#3a5a2a" : "#ffffff"}
+                      fontSize="12"
+                      fontFamily="Inter, sans-serif"
+                      fontWeight="400"
+                    >
+                      {line}
+                    </text>
+                  ))}
+                </g>
+              );
+            })}
+
+            {/* Center circle - Você, compreendido */}
+            <g
+              className={`transition-all duration-700 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
+              style={{ transitionDelay: "800ms", transformOrigin: "300px 300px" }}
+            >
+              <circle
+                cx="300" cy="300" r="72"
+                fill="#f0f4ec"
+                stroke="#b5c5ac"
+                strokeWidth="1.5"
+              />
+              <text
+                x="300" y="294"
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="#5f8849"
+                fontSize="14"
+                fontFamily="Cormorant Garamond, serif"
+                fontStyle="italic"
               >
-                <p className="text-sm font-sans font-medium text-foreground/80">{s.label}</p>
-              </div>
-            ))}
-          </div>
+                Você,
+              </text>
+              <text
+                x="300" y="314"
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="#5f8849"
+                fontSize="14"
+                fontFamily="Cormorant Garamond, serif"
+                fontStyle="italic"
+              >
+                compreendido
+              </text>
+            </g>
 
-          <div className="flex flex-col items-center gap-2 mb-8">
-            <div className="w-px h-8 bg-border" />
-            <svg width="12" height="12" viewBox="0 0 12 12" className="text-primary/40">
-              <path d="M6 0L12 6L6 12L0 6Z" fill="currentColor" />
-            </svg>
-            <div className="w-px h-8 bg-border" />
-          </div>
-
-          <div className="bg-primary/10 border border-primary/20 rounded-full px-10 py-5">
-            <p className="font-serif text-lg text-primary italic">Você, compreendido</p>
-          </div>
+            {/* Small decorative dots along orbit */}
+            {[45, 135, 225, 315].map((deg, i) => {
+              const angle = deg * (Math.PI / 180);
+              const cx = 300 + 220 * Math.cos(angle);
+              const cy = 300 + 220 * Math.sin(angle);
+              return (
+                <circle
+                  key={`dot-${i}`}
+                  cx={cx} cy={cy} r="3"
+                  fill="#b5c5ac"
+                  className={`transition-all duration-500 ${visible ? "opacity-50" : "opacity-0"}`}
+                  style={{ transitionDelay: `${1000 + i * 100}ms` }}
+                />
+              );
+            })}
+          </svg>
 
           <a
             href="#contato"
