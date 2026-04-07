@@ -14,8 +14,21 @@ const AboutSection = () => {
       <div className="max-w-5xl mx-auto">
         <p className="text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4">Sobre mim</p>
 
-        <div className="grid md:grid-cols-5 gap-12">
-          <div className="md:col-span-3">
+        <div className="grid md:grid-cols-5 gap-12 items-start">
+          <div className="md:col-span-2 order-2 md:order-1">
+            <div className="rounded-2xl overflow-hidden aspect-[3/4]">
+              <img
+                src={ezequiasPhoto}
+                alt="Ezequias Alves — Neuropsicólogo"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={600}
+                height={800}
+              />
+            </div>
+          </div>
+
+          <div className="md:col-span-3 order-1 md:order-2">
             <h2 className="text-4xl md:text-5xl font-serif font-light text-foreground mb-2">
               Ezequias Alves
             </h2>
