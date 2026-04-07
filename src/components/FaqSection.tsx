@@ -25,54 +25,36 @@ const FaqSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="duvidas" className="section-padding" ref={ref}>
-      <div className="max-w-5xl mx-auto">
-        <p className={`text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>Dúvidas</p>
-        <h2 className={`text-4xl md:text-5xl font-serif font-light text-foreground mb-4 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          Suas dúvidas
-        </h2>
-        <p className={`text-muted-foreground font-sans font-light max-w-xl leading-relaxed mb-4 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          O medo não some antes da decisão. Ele vem junto. E tudo bem ter medo.
-        </p>
-        <p className={`text-foreground/60 font-sans font-light text-sm italic mb-16 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          Esses medos são reais, e fazem sentido.
-        </p>
-
-        <div className="space-y-0">
-          {faqs.map((f, i) => (
-            <div
-              key={i}
-              className={`border-t border-border last:border-b transition-all duration-700 ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ transitionDelay: `${400 + i * 100}ms` }}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between py-6 text-left group"
-              >
-                <h3 className="text-lg md:text-xl font-serif text-foreground group-hover:text-primary transition-colors duration-300 pr-4">
-                  "{f.q}"
-                </h3>
-                <span
-                  className={`text-2xl text-primary/40 transition-transform duration-300 shrink-0 ${
-                    open === i ? "rotate-45" : ""
-                  }`}
-                >
-                  +
-                </span>
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  open === i ? "max-h-40 pb-6" : "max-h-0"
-                }`}
-              >
-                <p className="text-muted-foreground font-sans font-light leading-relaxed max-w-2xl">
-                  {f.a}
-                </p>
-              </div>
+    <section id="duvidas" className="section-padding bg-card" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-5">
+          <div className={`md:col-span-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="md:sticky md:top-32">
+              <p className="editorial-label mb-4">Dúvidas</p>
+              <h2 className="editorial-heading mb-4">Suas<br />dúvidas</h2>
+              <p className="editorial-body">O medo não some antes da decisão. Ele vem junto. E tudo bem ter medo.</p>
+              <p className="text-foreground/50 font-sans text-[13px] italic mt-3">Esses medos são reais, e fazem sentido.</p>
             </div>
-          ))}
+          </div>
+
+          <div className={`md:col-span-8 bento-card p-8 md:p-10 transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            {faqs.map((f, i) => (
+              <div key={i} className="border-b border-border/60 last:border-0">
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between py-5 md:py-6 text-left group"
+                >
+                  <h3 className="text-[17px] md:text-lg font-serif text-foreground group-hover:text-primary transition-colors duration-300 pr-4">
+                    "{f.q}"
+                  </h3>
+                  <span className={`text-xl text-primary/30 transition-transform duration-300 shrink-0 ${open === i ? "rotate-45" : ""}`}>+</span>
+                </button>
+                <div className={`overflow-hidden transition-all duration-500 ${open === i ? "max-h-40 pb-5" : "max-h-0"}`}>
+                  <p className="editorial-body max-w-xl">{f.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

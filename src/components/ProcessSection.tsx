@@ -1,186 +1,64 @@
-import { useEffect, useRef, useState } from "react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const steps = [
-  { label: "Como você\nsente", color: "#bee5ac" },
-  { label: "Como você\nprocessa", color: "#86ae72" },
-  { label: "Como você\npensa", color: "#5f8849" },
-  { label: "Como você se\nrelaciona", color: "#8d786f" },
+  { label: "Como você sente", color: "bg-sage-light" },
+  { label: "Como você processa", color: "bg-sage" },
+  { label: "Como você pensa", color: "bg-primary" },
+  { label: "Como você se relaciona", color: "bg-warm" },
 ];
 
 const ProcessSection = () => {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (svgRef.current) observer.observe(svgRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="como-funciona" className="section-padding">
-      <div className="max-w-5xl mx-auto">
-        <p className="text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4">O Mapa</p>
-        <h2 className="text-4xl md:text-5xl font-serif font-light text-foreground mb-6">
-          Um mapa da sua mente
-        </h2>
-        <p className="text-muted-foreground font-sans font-light max-w-2xl leading-relaxed mb-4">
-          Mapas não te dizem o que fazer. Eles te mostram onde você está. A avaliação é exatamente isso — um processo que revela seus padrões, suas forças e o que precisa de atenção.
-        </p>
-        <p className="text-muted-foreground font-sans font-light max-w-2xl leading-relaxed mb-4">
-          Não é sobre encontrar o que está errado. É sobre entender como você funciona — e parar de lutar contra si mesmo.
-        </p>
-        <p className="text-foreground/60 font-serif italic mb-16">
-          Cada mente é um mapa diferente. E o seu ainda está por ser desenhado.
-        </p>
+    <section id="como-funciona" className="section-padding bg-card" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-5">
+          {/* Left: content */}
+          <div className={`md:col-span-5 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <p className="editorial-label mb-4">O Mapa</p>
+            <h2 className="editorial-heading mb-6">
+              Um mapa<br />da sua mente
+            </h2>
+            <div className="space-y-4 editorial-body mb-8">
+              <p>Mapas não te dizem o que fazer. Eles te mostram onde você está. A avaliação é exatamente isso, um processo que revela seus padrões, suas forças e o que precisa de atenção.</p>
+              <p>Não é sobre encontrar o que está errado. É sobre entender como você funciona, e parar de lutar contra si mesmo.</p>
+            </div>
+            <p className="text-foreground/50 font-serif italic text-lg">
+              Cada mente é um mapa diferente. E o seu ainda está por ser desenhado.
+            </p>
+            <a href="#contato"
+              className="inline-block mt-8 bg-primary text-primary-foreground px-7 py-3 rounded-full text-[13px] font-sans tracking-wide hover:bg-deep transition-colors duration-300">
+              Começar minha jornada
+            </a>
+          </div>
 
-        {/* Circular mind map diagram */}
-        <div className="flex flex-col items-center">
-          <svg
-            ref={svgRef}
-            viewBox="0 0 600 600"
-            className="w-full max-w-lg"
-            aria-label="Diagrama circular: Como você sente, processa, pensa e se relaciona convergem para Você, compreendido"
-          >
-            {/* Outer ring - dashed orbit */}
-            <circle
-              cx="300" cy="300" r="220"
-              fill="none"
-              stroke="#b5c5ac"
-              strokeWidth="1"
-              strokeDasharray="6 6"
-              className={`transition-all duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
-            />
+          {/* Right: visual diagram as bento cards */}
+          <div className="md:col-span-7 flex items-center justify-center">
+            <div className={`w-full max-w-md transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                {steps.map((s, i) => (
+                  <div key={i} className={`${s.color} rounded-2xl p-6 md:p-8 flex items-center justify-center min-h-[100px] md:min-h-[130px]`}>
+                    <p className={`text-[13px] font-sans font-medium text-center ${i >= 2 ? "text-primary-foreground" : "text-foreground/70"}`}>
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-            {/* Connecting lines from nodes to center */}
-            {steps.map((_, i) => {
-              const angle = (i * 90 - 90) * (Math.PI / 180);
-              const x = 300 + 220 * Math.cos(angle);
-              const y = 300 + 220 * Math.sin(angle);
-              return (
-                <line
-                  key={`line-${i}`}
-                  x1={x} y1={y} x2="300" y2="300"
-                  stroke="#b5c5ac"
-                  strokeWidth="1"
-                  strokeDasharray="4 4"
-                  className={`transition-all duration-700 ${visible ? "opacity-60" : "opacity-0"}`}
-                  style={{ transitionDelay: `${400 + i * 150}ms` }}
-                />
-              );
-            })}
+              {/* Connector */}
+              <div className="flex flex-col items-center gap-1 my-4">
+                <div className="w-px h-6 bg-border" />
+                <div className="w-2 h-2 rounded-full bg-primary/20" />
+                <div className="w-px h-6 bg-border" />
+              </div>
 
-            {/* Inner subtle ring */}
-            <circle
-              cx="300" cy="300" r="110"
-              fill="none"
-              stroke="#b5c5ac"
-              strokeWidth="0.5"
-              strokeDasharray="3 5"
-              className={`transition-all duration-1000 ${visible ? "opacity-40" : "opacity-0"}`}
-              style={{ transitionDelay: "300ms" }}
-            />
-
-            {/* Orbit nodes */}
-            {steps.map((step, i) => {
-              const angle = (i * 90 - 90) * (Math.PI / 180);
-              const cx = 300 + 220 * Math.cos(angle);
-              const cy = 300 + 220 * Math.sin(angle);
-              const r = 62;
-              const lines = step.label.split("\n");
-              const isLight = i === 0;
-
-              return (
-                <g
-                  key={i}
-                  className={`transition-all duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
-                  style={{ transitionDelay: `${i * 200}ms` }}
-                >
-                  <circle
-                    cx={cx} cy={cy} r={r}
-                    fill={step.color}
-                    className="drop-shadow-sm"
-                  />
-                  {lines.map((line, li) => (
-                    <text
-                      key={li}
-                      x={cx}
-                      y={cy + (li - (lines.length - 1) / 2) * 16}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fill={isLight ? "#3a5a2a" : "#ffffff"}
-                      fontSize="12"
-                      fontFamily="Inter, sans-serif"
-                      fontWeight="400"
-                    >
-                      {line}
-                    </text>
-                  ))}
-                </g>
-              );
-            })}
-
-            {/* Center circle - Você, compreendido */}
-            <g
-              className={`transition-all duration-700 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
-              style={{ transitionDelay: "800ms", transformOrigin: "300px 300px" }}
-            >
-              <circle
-                cx="300" cy="300" r="72"
-                fill="#f0f4ec"
-                stroke="#b5c5ac"
-                strokeWidth="1.5"
-              />
-              <text
-                x="300" y="294"
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#5f8849"
-                fontSize="14"
-                fontFamily="Cormorant Garamond, serif"
-                fontStyle="italic"
-              >
-                Você,
-              </text>
-              <text
-                x="300" y="314"
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#5f8849"
-                fontSize="14"
-                fontFamily="Cormorant Garamond, serif"
-                fontStyle="italic"
-              >
-                compreendido
-              </text>
-            </g>
-
-            {/* Small decorative dots along orbit */}
-            {[45, 135, 225, 315].map((deg, i) => {
-              const angle = deg * (Math.PI / 180);
-              const cx = 300 + 220 * Math.cos(angle);
-              const cy = 300 + 220 * Math.sin(angle);
-              return (
-                <circle
-                  key={`dot-${i}`}
-                  cx={cx} cy={cy} r="3"
-                  fill="#b5c5ac"
-                  className={`transition-all duration-500 ${visible ? "opacity-50" : "opacity-0"}`}
-                  style={{ transitionDelay: `${1000 + i * 100}ms` }}
-                />
-              );
-            })}
-          </svg>
-
-          <a
-            href="#contato"
-            className="mt-12 bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-sans text-sm tracking-wide hover:bg-sage transition-colors duration-300"
-          >
-            Começar minha jornada
-          </a>
+              {/* Center result */}
+              <div className="bento-card bg-primary/[0.07] border border-primary/15 rounded-full px-8 py-5 mx-auto w-fit">
+                <p className="font-serif text-lg text-primary italic text-center">Você, compreendido</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
