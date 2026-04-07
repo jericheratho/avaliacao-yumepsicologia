@@ -2,86 +2,63 @@ import ezequiasPhoto from "@/assets/ezequias-photo.jpg";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const credentials = [
-  "Mestrando em Cultura e Sociedade, Universidade Federal da Bahia (UFBA)",
+  "Mestrando em Cultura e Sociedade, UFBA",
   "Neuropsicólogo, UNIFACS",
   "Especialista em Saúde Mental, PUC Minas",
   "Especializando em Avaliação Psicológica, IPOG",
-  "Grupo de Pesquisa Corpo e Cultura, UFRB / UFBA",
+  "Pesquisa Corpo e Cultura, UFRB / UFBA",
 ];
 
 const AboutSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="sobre" className="section-padding bg-card" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
-          {/* Photo */}
-          <div
-            className={`md:col-span-5 transition-all duration-1000 ${
-              visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
-            }`}
-          >
-            <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-xl">
-                <img
-                  src={ezequiasPhoto}
-                  alt="Ezequias Alves, Neuropsicólogo"
-                  className="w-full aspect-[4/5] object-cover"
-                  loading="lazy"
-                  width={600}
-                  height={750}
-                />
-              </div>
-              {/* Decorative accent */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/40 rounded-3xl -z-10" />
-            </div>
+    <section id="sobre" className="section-padding" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-5">
+          {/* Photo card */}
+          <div className={`md:col-span-5 bento-card overflow-hidden transition-all duration-700 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
+            <img
+              src={ezequiasPhoto}
+              alt="Ezequias Alves, Neuropsicólogo"
+              className="w-full aspect-[4/5] object-cover"
+              loading="lazy"
+              width={600}
+              height={750}
+            />
           </div>
 
           {/* Content */}
-          <div
-            className={`md:col-span-7 transition-all duration-1000 delay-200 ${
-              visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
-            }`}
-          >
-            <p className="text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4">
-              Sobre mim
-            </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-foreground mb-2">
-              Ezequias Alves
-            </h2>
-            <p className="text-sm font-sans text-primary mb-8">
-              Neuropsicólogo · CRP 03/24172
-            </p>
-
-            <div className="space-y-4 text-muted-foreground font-sans font-light leading-relaxed">
-              <p>
-                Acredito que entender como sua mente funciona não é um privilégio, é um direito. Cada pessoa carrega um jeito único de existir, e meu trabalho é ajudar a traduzir isso em palavras, em clareza, em caminhos possíveis.
-              </p>
-              <p>
-                Trabalho com avaliação psicológica e neuropsicológica há mais de 5 anos, com foco em neurodivergências, saúde mental e subjetividade. Sou co-proprietário da Yume Psicologia e facilito grupos terapêuticos.
-              </p>
-              <p>
-                Também pesquiso, porque acredito que a clínica precisa dialogar com a cultura, com o corpo, com o que somos além do diagnóstico.
-              </p>
+          <div className="md:col-span-7 flex flex-col gap-5">
+            <div className={`bento-card p-8 md:p-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
+              <p className="editorial-label mb-4">Sobre mim</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-foreground mb-1">
+                Ezequias Alves
+              </h2>
+              <p className="text-[13px] font-sans text-primary mb-6">Neuropsicólogo · CRP 03/24172</p>
+              <div className="space-y-3 editorial-body">
+                <p>Acredito que entender como sua mente funciona não é um privilégio, é um direito. Cada pessoa carrega um jeito único de existir, e meu trabalho é ajudar a traduzir isso em palavras, em clareza, em caminhos possíveis.</p>
+                <p>Trabalho com avaliação psicológica e neuropsicológica há mais de 5 anos, com foco em neurodivergências, saúde mental e subjetividade. Sou co-proprietário da Yume Psicologia e facilito grupos terapêuticos.</p>
+                <p>Também pesquiso, porque acredito que a clínica precisa dialogar com a cultura, com o corpo, com o que somos além do diagnóstico.</p>
+              </div>
             </div>
 
-            <div className="bg-muted/50 rounded-2xl p-6 md:p-8 mt-8">
-              <h4 className="text-xs font-sans uppercase tracking-[0.2em] text-primary/60 mb-5">
-                Formação
-              </h4>
-              <ul className="space-y-2.5">
-                {credentials.map((c, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm font-sans text-foreground/70 leading-relaxed">
-                    <span className="text-sage mt-0.5 shrink-0">·</span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 pt-4 border-t border-border">
-                <p className="text-xs font-sans text-muted-foreground leading-relaxed">
-                  Pesquisa: corpo, estética, literatura, subjetividade, gênero e sexualidade
+            {/* Credentials row */}
+            <div className="grid grid-cols-2 gap-5">
+              <div className={`bento-card bg-primary p-6 md:p-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+                <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-primary-foreground/40 mb-4">Formação</p>
+                <ul className="space-y-2">
+                  {credentials.map((c, i) => (
+                    <li key={i} className="text-[13px] font-sans text-primary-foreground/70 leading-snug">{c}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className={`bento-card bg-warm p-6 md:p-8 flex flex-col justify-between transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+                <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-warm-foreground/40 mb-4">Pesquisa</p>
+                <p className="text-[13px] font-sans text-warm-foreground/70 leading-relaxed">
+                  Corpo, estética, literatura, subjetividade, gênero e sexualidade
                 </p>
+                <span className="text-[6rem] font-serif font-light text-warm-foreground/[0.08] leading-none self-end mt-4 select-none">+5</span>
               </div>
             </div>
           </div>

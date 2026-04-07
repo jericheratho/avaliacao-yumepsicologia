@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const questions = [
   "Por que eu me canso tanto sem fazer nada?",
@@ -9,52 +9,47 @@ const questions = [
 ];
 
 const IdentificationSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section ref={ref} className="section-padding bg-card">
-      <div className="max-w-5xl mx-auto">
-        <p className={`text-xs font-sans uppercase tracking-[0.3em] text-primary/60 mb-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>Identificação</p>
-        <h2 className={`text-4xl md:text-5xl font-serif font-light text-foreground mb-6 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          Você se reconhece aqui?
-        </h2>
-        <p className={`text-muted-foreground font-sans font-light max-w-2xl leading-relaxed mb-4 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          Algumas perguntas ficam anos dentro da gente sem resposta.
-        </p>
-        <p className={`text-muted-foreground font-sans font-light max-w-2xl leading-relaxed mb-16 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          Tem um tipo de cansaço que ninguém vê. Não é falta de sono. Não é preguiça. É o esforço silencioso de uma vida inteira tentando caber em espaços que nunca foram feitos para você.
-        </p>
-        <p className={`text-sm text-warm font-sans italic mb-12 transition-all duration-700 delay-[400ms] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          Se você chegou até aqui, provavelmente já está cansado de não se entender.
-        </p>
+    <section ref={ref} className="section-padding">
+      <div className="max-w-7xl mx-auto">
+        {/* Bento grid */}
+        <div className="grid md:grid-cols-12 gap-5">
+          {/* Left: heading block */}
+          <div className={`md:col-span-5 bento-card p-8 md:p-12 flex flex-col justify-between transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div>
+              <p className="editorial-label mb-4">Identificação</p>
+              <h2 className="editorial-heading mb-6">
+                Você se<br />reconhece<br />aqui?
+              </h2>
+            </div>
+            <p className="text-sm text-warm font-sans italic mt-8">
+              Se você chegou até aqui, provavelmente já está cansado de não se entender.
+            </p>
+          </div>
 
-        <div className="space-y-0">
-          {questions.map((q, i) => (
-            <div
-              key={i}
-              className={`group border-t border-border last:border-b py-6 flex items-start gap-6 transition-all duration-700 ${
-                visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-              }`}
-              style={{ transitionDelay: `${500 + i * 120}ms` }}
-            >
-              <span className="text-xs font-sans text-primary/40 pt-1 shrink-0">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-lg md:text-xl font-serif text-foreground/80 group-hover:text-primary transition-colors duration-300">
-                {q}
+          {/* Right: questions + intro */}
+          <div className="md:col-span-7 flex flex-col gap-5">
+            <div className={`bento-card bg-primary p-8 md:p-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <p className="text-primary-foreground/90 font-sans font-light text-[15px] leading-[1.8]">
+                Tem um tipo de cansaço que ninguém vê. Não é falta de sono. Não é preguiça. É o esforço silencioso de uma vida inteira tentando caber em espaços que nunca foram feitos para você.
               </p>
             </div>
-          ))}
+
+            <div className={`bento-card p-8 md:p-10 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              {questions.map((q, i) => (
+                <div key={i} className="group border-b border-border/60 last:border-0 py-4 first:pt-0 last:pb-0 flex items-start gap-4">
+                  <span className="text-[10px] font-sans text-primary/30 pt-1.5 shrink-0 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-[17px] font-serif text-foreground/75 group-hover:text-primary transition-colors duration-300">
+                    {q}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
