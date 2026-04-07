@@ -19,7 +19,7 @@ const HeroSection = () => {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light leading-[1.05] tracking-tight text-foreground fade-in">
             Existe um mapa
             <br />
-            <span className="italic text-primary">de como a sua</span>
+            de como a sua
             <br />
             <span className="italic text-primary">mente funciona.</span>
           </h1>
