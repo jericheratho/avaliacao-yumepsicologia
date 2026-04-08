@@ -16,8 +16,7 @@ const AboutSection = () => {
     <section id="sobre" className="section-padding" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-12 gap-5">
-          {/* Photo card */}
-          <div className={`md:col-span-5 bento-card overflow-hidden transition-all duration-700 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
+          <div className={`md:col-span-5 glass-card overflow-hidden transition-all duration-700 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
             <img
               src={ezequiasPhoto}
               alt="Ezequias Alves, Neuropsicólogo"
@@ -28,9 +27,8 @@ const AboutSection = () => {
             />
           </div>
 
-          {/* Content */}
           <div className="md:col-span-7 flex flex-col gap-5">
-            <div className={`bento-card p-8 md:p-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
+            <div className={`glass-card p-8 md:p-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
               <p className="editorial-label mb-4">Sobre mim</p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light text-foreground mb-1">
                 Ezequias Alves
@@ -43,9 +41,8 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Credentials row */}
             <div className="grid grid-cols-2 gap-5">
-              <div className={`bento-card bg-primary p-6 md:p-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <div className={`glass-card !bg-primary/80 !backdrop-blur-xl !border-primary/20 p-6 md:p-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
                 <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-primary-foreground/40 mb-4">Formação</p>
                 <ul className="space-y-2">
                   {credentials.map((c, i) => (
@@ -53,7 +50,7 @@ const AboutSection = () => {
                   ))}
                 </ul>
               </div>
-              <div className={`bento-card bg-warm p-6 md:p-8 flex flex-col justify-between transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <div className={`glass-card !bg-warm/70 !backdrop-blur-xl !border-warm/20 p-6 md:p-8 flex flex-col justify-between transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
                 <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-warm-foreground/40 mb-4">Pesquisa</p>
                 <p className="text-[13px] font-sans text-warm-foreground/70 leading-relaxed">
                   Corpo, estética, literatura, subjetividade, gênero e sexualidade

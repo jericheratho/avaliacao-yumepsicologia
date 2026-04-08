@@ -25,7 +25,7 @@ const FaqSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section id="duvidas" className="section-padding bg-card" ref={ref}>
+    <section id="duvidas" className="section-padding" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-12 gap-5">
           <div className={`md:col-span-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
@@ -37,9 +37,9 @@ const FaqSection = () => {
             </div>
           </div>
 
-          <div className={`md:col-span-8 bento-card p-8 md:p-10 transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`md:col-span-8 glass-card p-8 md:p-10 transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             {faqs.map((f, i) => (
-              <div key={i} className="border-b border-border/60 last:border-0">
+              <div key={i} className="border-b border-border/40 last:border-0">
                 <button
                   onClick={() => setOpen(open === i ? null : i)}
                   className="w-full flex items-center justify-between py-5 md:py-6 text-left group"

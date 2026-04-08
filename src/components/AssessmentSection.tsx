@@ -4,10 +4,9 @@ const AssessmentSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
 
   return (
-    <section ref={ref} className="section-padding bg-card">
+    <section ref={ref} className="section-padding">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-12 gap-5">
-          {/* Header spanning full width */}
           <div className={`md:col-span-12 mb-6 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <p className="editorial-label mb-4">Entenda a diferença</p>
             <h2 className="editorial-heading">
@@ -15,8 +14,7 @@ const AssessmentSection = () => {
             </h2>
           </div>
 
-          {/* Card 1 */}
-          <div className={`md:col-span-6 bento-card border border-border/50 p-8 md:p-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`md:col-span-6 glass-card p-8 md:p-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-2 h-2 rounded-full bg-sage" />
               <p className="text-[11px] font-sans uppercase tracking-[0.2em] text-primary/50">Foco emocional e comportamental</p>
@@ -39,8 +37,7 @@ const AssessmentSection = () => {
             </ul>
           </div>
 
-          {/* Card 2 */}
-          <div className={`md:col-span-6 bento-card bg-primary p-8 md:p-10 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`md:col-span-6 glass-card !bg-primary/80 !backdrop-blur-xl !border-primary/20 p-8 md:p-10 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-2 h-2 rounded-full bg-accent" />
               <p className="text-[11px] font-sans uppercase tracking-[0.2em] text-primary-foreground/50">Foco nas funções cognitivas</p>
