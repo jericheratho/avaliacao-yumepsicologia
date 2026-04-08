@@ -21,7 +21,9 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-card/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled
+          ? "backdrop-blur-xl bg-white/40 shadow-sm border-b border-white/30"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-5 md:px-10 py-4">
@@ -59,7 +61,7 @@ const Header = () => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-card/95 backdrop-blur-md border-t border-border">
+        <div className="md:hidden backdrop-blur-xl bg-white/60 border-t border-white/30">
           <nav className="flex flex-col px-5 py-6 gap-4">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}

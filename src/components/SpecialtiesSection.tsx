@@ -32,24 +32,21 @@ const SpecialtiesSection = () => {
     <section id="especialidades" className="section-padding" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-12 gap-5">
-          {/* Left: large decorative text + heading */}
           <div className={`md:col-span-4 relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="md:sticky md:top-32">
               <p className="editorial-label mb-4">Especialidades</p>
               <h2 className="editorial-heading mb-6">
                 Áreas de<br />atuação
               </h2>
-              {/* Decorative large text */}
               <span className="hidden md:block text-[8rem] font-serif font-light text-primary/[0.06] leading-none select-none -ml-2">
                 05
               </span>
             </div>
           </div>
 
-          {/* Right: accordion */}
-          <div className={`md:col-span-8 bento-card p-8 md:p-10 transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`md:col-span-8 glass-card p-8 md:p-10 transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             {specialties.map((s, i) => (
-              <div key={i} className="border-b border-border/60 last:border-0">
+              <div key={i} className="border-b border-border/40 last:border-0">
                 <button
                   onClick={() => setOpen(open === i ? null : i)}
                   className="w-full flex items-center justify-between py-5 md:py-6 text-left group"
