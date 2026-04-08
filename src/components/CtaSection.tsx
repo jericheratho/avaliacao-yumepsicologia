@@ -7,10 +7,6 @@ const CtaSection = () => {
     <section id="contato" className="section-padding" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className={`bento-card bg-primary relative overflow-hidden p-10 md:p-16 lg:p-20 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          {/* Decorative background text */}
-          <span className="absolute -right-8 -bottom-6 text-[12rem] md:text-[18rem] font-serif font-light text-primary-foreground/[0.04] leading-none select-none pointer-events-none">
-            yume
-          </span>
 
           <div className="relative max-w-xl">
             <p className="text-[10px] font-sans uppercase tracking-[0.35em] text-primary-foreground/40 mb-6">Próximo passo</p>
