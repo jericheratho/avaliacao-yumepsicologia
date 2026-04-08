@@ -33,30 +33,92 @@ const ProcessSection = () => {
             </a>
           </div>
 
-          {/* Right: visual diagram as bento cards */}
+          {/* Right: circular mind map diagram */}
           <div className="md:col-span-7 flex items-center justify-center">
-            <div className={`w-full max-w-md transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {steps.map((s, i) => (
-                  <div key={i} className={`${s.color} rounded-2xl p-6 md:p-8 flex items-center justify-center min-h-[100px] md:min-h-[130px]`}>
-                    <p className={`text-[13px] font-sans font-medium text-center ${i >= 2 ? "text-primary-foreground" : "text-foreground/70"}`}>
-                      {s.label}
-                    </p>
+            <div className={`relative w-[340px] h-[340px] md:w-[420px] md:h-[420px] transition-all duration-1000 delay-200 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
+              {/* Outer orbit ring */}
+              <div className="absolute inset-0 rounded-full border border-dashed border-primary/20" />
+              {/* Inner orbit ring */}
+              <div className="absolute inset-[60px] md:inset-[75px] rounded-full border border-dashed border-primary/10" />
+
+              {/* Center node */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-primary rounded-full w-[110px] h-[110px] md:w-[130px] md:h-[130px] flex items-center justify-center shadow-lg z-10">
+                  <p className="font-serif text-[14px] md:text-[16px] text-primary-foreground italic text-center leading-tight px-3">
+                    Você,<br />compreendido
+                  </p>
+                </div>
+              </div>
+
+              {/* Orbital nodes */}
+              {steps.map((s, i) => {
+                const angles = [-90, 0, 90, 180];
+                const angle = angles[i];
+                const rad = (angle * Math.PI) / 180;
+                const radius = 42;
+                const x = 50 + radius * Math.cos(rad);
+                const y = 50 + radius * Math.sin(rad);
+                return (
+                  <div
+                    key={i}
+                    className={`absolute z-20 transition-all duration-700`}
+                    style={{
+                      left: `${x}%`,
+                      top: `${y}%`,
+                      transform: 'translate(-50%, -50%)',
+                      transitionDelay: `${300 + i * 150}ms`,
+                      opacity: visible ? 1 : 0,
+                    }}
+                  >
+                    <div className={`${s.color} rounded-full w-[90px] h-[90px] md:w-[105px] md:h-[105px] flex items-center justify-center shadow-md`}>
+                      <p className={`text-[11px] md:text-[12px] font-sans font-medium text-center leading-tight px-2 ${i >= 2 ? "text-primary-foreground" : "text-foreground/70"}`}>
+                        {s.label}
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
 
-              {/* Connector */}
-              <div className="flex flex-col items-center gap-1 my-4">
-                <div className="w-px h-6 bg-border" />
-                <div className="w-2 h-2 rounded-full bg-primary/20" />
-                <div className="w-px h-6 bg-border" />
-              </div>
-
-              {/* Center result */}
-              <div className="bento-card bg-primary/[0.07] border border-primary/15 rounded-full px-8 py-5 mx-auto w-fit">
-                <p className="font-serif text-lg text-primary italic text-center">Você, compreendido</p>
-              </div>
+              {/* Connecting lines (SVG) */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
+                {steps.map((_, i) => {
+                  const angles = [-90, 0, 90, 180];
+                  const rad = (angles[i] * Math.PI) / 180;
+                  const r = 42;
+                  const x = 50 + r * Math.cos(rad);
+                  const y = 50 + r * Math.sin(rad);
+                  return (
+                    <line
+                      key={i}
+                      x1="50" y1="50"
+                      x2={x} y2={y}
+                      stroke="hsl(var(--primary))"
+                      strokeOpacity="0.15"
+                      strokeWidth="0.3"
+                      strokeDasharray="1 1"
+                    />
+                  );
+                })}
+                {/* Cross-connections between adjacent nodes */}
+                {steps.map((_, i) => {
+                  const angles = [-90, 0, 90, 180];
+                  const next = (i + 1) % 4;
+                  const rad1 = (angles[i] * Math.PI) / 180;
+                  const rad2 = (angles[next] * Math.PI) / 180;
+                  const r = 42;
+                  return (
+                    <line
+                      key={`conn-${i}`}
+                      x1={50 + r * Math.cos(rad1)} y1={50 + r * Math.sin(rad1)}
+                      x2={50 + r * Math.cos(rad2)} y2={50 + r * Math.sin(rad2)}
+                      stroke="hsl(var(--primary))"
+                      strokeOpacity="0.08"
+                      strokeWidth="0.25"
+                      strokeDasharray="1.5 1"
+                    />
+                  );
+                })}
+              </svg>
             </div>
           </div>
         </div>

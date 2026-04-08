@@ -19,7 +19,6 @@ const IdentificationSection = () => {
           {/* Left: heading block */}
           <div className={`md:col-span-5 bento-card p-8 md:p-12 flex flex-col justify-between transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div>
-              <p className="editorial-label mb-4">Identificação</p>
               <h2 className="editorial-heading mb-6">
                 Você se<br />reconhece<br />aqui?
               </h2>
