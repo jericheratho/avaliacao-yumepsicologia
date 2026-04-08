@@ -2,9 +2,9 @@ import logo from "@/assets/logo-yume.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground px-5 md:px-10 lg:px-16 py-14">
+    <footer className="px-5 md:px-10 lg:px-16 py-14 bg-warm">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
+        <div className="grid md:grid-cols-4 gap-10 mb-12 text-secondary-foreground">
           <div className="md:col-span-2">
             <img src={logo} alt="Yume Psicologia" className="h-10 w-auto brightness-200 mb-4" loading="lazy" />
             <p className="text-[13px] font-sans font-light text-primary-foreground/40 leading-relaxed max-w-xs">
