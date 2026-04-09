@@ -36,10 +36,10 @@ const ProcessSection = () => {
             <div className="md:col-span-7 flex items-center justify-center">
               <div className={`relative w-[280px] h-[280px] md:w-[420px] md:h-[420px] transition-all duration-1000 delay-200 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
                 <div className="absolute inset-0 rounded-full border border-dashed border-primary/20" />
-                <div className="absolute inset-[60px] md:inset-[75px] rounded-full border border-dashed border-primary/10" />
+                <div className="absolute inset-[50px] md:inset-[75px] rounded-full border border-dashed border-primary/10" />
 
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-primary rounded-full w-[110px] h-[110px] md:w-[130px] md:h-[130px] flex items-center justify-center shadow-lg z-10">
+                  <div className="bg-primary rounded-full w-[90px] h-[90px] md:w-[130px] md:h-[130px] flex items-center justify-center shadow-lg z-10">
                     <p className="font-serif text-[14px] md:text-[16px] text-primary-foreground italic text-center leading-tight px-3">
                       Você,<br />compreendido
                     </p>
