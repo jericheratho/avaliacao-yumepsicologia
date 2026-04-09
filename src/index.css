@@ -110,6 +110,10 @@
   .reveal-d2 { animation-delay: 0.24s; }
   .reveal-d3 { animation-delay: 0.36s; }
   .reveal-d4 { animation-delay: 0.48s; }
+
+  .scroll-section {
+    will-change: transform, opacity;
+  }
 }
 
 @keyframes revealUp {
@@ -122,5 +126,14 @@
   50%      { opacity: 0.12; }
 }
 .animate-slow-pulse { animation: slowPulse 8s ease-in-out infinite; }
+
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -20px) scale(1.03); }
+  66% { transform: translate(-10px, 12px) scale(0.97); }
+}
+.animate-float-blob { animation: floatBlob 20s ease-in-out infinite; }
+.animate-float-blob-2 { animation: floatBlob 25s ease-in-out infinite reverse; }
+.animate-float-blob-3 { animation: floatBlob 18s ease-in-out infinite 5s; }
 
 html { scroll-behavior: smooth; }
