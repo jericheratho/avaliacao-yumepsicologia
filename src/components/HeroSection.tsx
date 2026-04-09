@@ -41,8 +41,8 @@ const HeroSection = () => {
         </div>
 
         <div className="mt-16 md:mt-24 reveal reveal-d3">
-          <div className="glass-card px-8 py-6 md:px-12 md:py-8">
-            <p className="text-lg md:text-xl font-serif italic text-foreground/60 leading-relaxed max-w-3xl">
+          <div className="px-4 py-6 md:px-12 md:py-8">
+            <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-foreground/60 leading-snug text-center max-w-3xl mx-auto">
               "Você não é difícil de lidar. Você é uma mente que ainda não teve palavras para o que sente."
             </p>
           </div>
