@@ -27,13 +27,9 @@ const ProcessSection = () => {
               <p className="text-foreground/50 font-serif italic text-lg">
                 Cada mente é um mapa diferente. E o seu ainda está por ser desenhado.
               </p>
-              <a href="#contato"
-                className="inline-block mt-8 bg-primary text-primary-foreground px-7 py-3 rounded-full text-[13px] font-sans tracking-wide hover:bg-deep transition-colors duration-300">
-                Começar minha jornada
-              </a>
             </div>
 
-            <div className="md:col-span-7 flex items-center justify-center">
+            <div className="md:col-span-7 flex flex-col items-center justify-center">
               <div className={`relative w-[280px] h-[280px] md:w-[420px] md:h-[420px] transition-all duration-1000 delay-200 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
                 <div className="absolute inset-0 rounded-full border border-dashed border-primary/20" />
                 <div className="absolute inset-[50px] md:inset-[75px] rounded-full border border-dashed border-primary/10" />
@@ -113,6 +109,11 @@ const ProcessSection = () => {
                   })}
                 </svg>
               </div>
+
+              <a href="#contato"
+                className={`mt-8 inline-block bg-primary text-primary-foreground px-7 py-3 rounded-full text-[13px] font-sans tracking-wide hover:bg-deep transition-all duration-500 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                Começar minha jornada
+              </a>
             </div>
           </div>
         </div>
