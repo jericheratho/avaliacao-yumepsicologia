@@ -34,7 +34,7 @@ const ProcessSection = () => {
             </div>
 
             <div className="md:col-span-7 flex items-center justify-center">
-              <div className={`relative w-[340px] h-[340px] md:w-[420px] md:h-[420px] transition-all duration-1000 delay-200 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
+              <div className={`relative w-[280px] h-[280px] md:w-[420px] md:h-[420px] transition-all duration-1000 delay-200 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
                 <div className="absolute inset-0 rounded-full border border-dashed border-primary/20" />
                 <div className="absolute inset-[60px] md:inset-[75px] rounded-full border border-dashed border-primary/10" />
 
@@ -65,7 +65,7 @@ const ProcessSection = () => {
                         opacity: visible ? 1 : 0,
                       }}
                     >
-                      <div className={`${s.color} rounded-full w-[90px] h-[90px] md:w-[105px] md:h-[105px] flex items-center justify-center shadow-md`}>
+                      <div className={`${s.color} rounded-full w-[70px] h-[70px] md:w-[105px] md:h-[105px] flex items-center justify-center shadow-md`}>
                         <p className={`text-[11px] md:text-[12px] font-sans font-medium text-center leading-tight px-2 ${i >= 2 ? "text-primary-foreground" : "text-foreground/70"}`}>
                           {s.label}
                         </p>
