@@ -1,4 +1,12 @@
 import logo from "@/assets/logo-yume.png";
+import { Instagram, Facebook, Linkedin, MessageCircle } from "lucide-react";
+
+const socialLinks = [
+  { name: "Instagram", icon: Instagram, href: "#" },
+  { name: "Facebook", icon: Facebook, href: "#" },
+  { name: "LinkedIn", icon: Linkedin, href: "#" },
+  { name: "WhatsApp", icon: MessageCircle, href: "#" },
+];
 
 const Footer = () => {
   return (
@@ -10,11 +18,13 @@ const Footer = () => {
             <p className="text-[13px] font-sans font-light text-muted-foreground leading-relaxed max-w-xs">
               Sonhos, acolhimento & muito afeto.
             </p>
-            <div className="mt-5 flex gap-5">
-              {["Instagram", "Facebook", "LinkedIn", "WhatsApp"].map((s) => (
-                <a key={s} href="#"
-                  className="text-[11px] font-sans text-foreground/30 hover:text-primary transition-colors duration-300">
-                  {s}
+            <div className="mt-5 flex gap-4">
+              {socialLinks.map((s) => (
+                <a key={s.name} href={s.href}
+                  className="text-foreground/30 hover:text-primary transition-colors duration-300"
+                  aria-label={s.name}
+                >
+                  <s.icon size={18} strokeWidth={1.5} />
                 </a>
               ))}
             </div>

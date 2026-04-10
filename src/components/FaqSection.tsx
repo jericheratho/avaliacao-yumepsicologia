@@ -30,8 +30,8 @@ const FaqSection = () => {
         <div className="grid md:grid-cols-12 gap-5">
           <div className={`md:col-span-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="md:sticky md:top-32">
-              <p className="editorial-label mb-4">Dúvidas</p>
-              <h2 className="editorial-heading mb-4">Suas<br />dúvidas</h2>
+              <p className="editorial-label mb-4">FAQ</p>
+              <h2 className="editorial-heading mb-4">Perguntas<br />frequentes</h2>
               <p className="editorial-body">O medo não some antes da decisão. Ele vem junto. E tudo bem ter medo.</p>
               <p className="text-foreground/50 font-sans text-[13px] italic mt-3">Esses medos são reais, e fazem sentido.</p>
             </div>

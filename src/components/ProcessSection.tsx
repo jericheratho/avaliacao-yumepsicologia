@@ -24,15 +24,20 @@ const ProcessSection = () => {
                 <p>Mapas não te dizem o que fazer. Eles te mostram onde você está. A avaliação é exatamente isso, um processo que revela seus padrões, suas forças e o que precisa de atenção.</p>
                 <p>Não é sobre encontrar o que está errado. É sobre entender como você funciona, e parar de lutar contra si mesmo.</p>
               </div>
-              <p className="text-foreground/50 font-serif italic text-lg">
+              <p className="text-foreground/50 font-serif italic text-lg mb-6">
                 Cada mente é um mapa diferente. E o seu ainda está por ser desenhado.
               </p>
+              <a href="#contato"
+                className="hidden md:inline-block bg-primary text-primary-foreground px-7 py-3 rounded-full text-[13px] font-sans tracking-wide hover:bg-deep transition-colors duration-300">
+                Começar minha jornada
+              </a>
             </div>
 
             <div className="md:col-span-7 flex flex-col items-center justify-center">
               <div className={`relative w-[280px] h-[280px] md:w-[420px] md:h-[420px] transition-all duration-1000 delay-200 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
-                <div className="absolute inset-0 rounded-full border border-dashed border-primary/20" />
-                <div className="absolute inset-[50px] md:inset-[75px] rounded-full border border-dashed border-primary/10" />
+                {/* Rotating orbit rings */}
+                <div className="absolute inset-0 rounded-full border border-dashed border-primary/20 animate-orbit-slow" />
+                <div className="absolute inset-[50px] md:inset-[75px] rounded-full border border-dashed border-primary/10 animate-orbit-reverse" />
 
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-primary rounded-full w-[90px] h-[90px] md:w-[130px] md:h-[130px] flex items-center justify-center shadow-lg z-10">
@@ -42,35 +47,41 @@ const ProcessSection = () => {
                   </div>
                 </div>
 
-                {steps.map((s, i) => {
-                  const angles = [-90, 0, 90, 180];
-                  const angle = angles[i];
-                  const rad = (angle * Math.PI) / 180;
-                  const radius = 42;
-                  const x = 50 + radius * Math.cos(rad);
-                  const y = 50 + radius * Math.sin(rad);
-                  return (
-                    <div
-                      key={i}
-                      className="absolute z-20 transition-all duration-700"
-                      style={{
-                        left: `${x}%`,
-                        top: `${y}%`,
-                        transform: 'translate(-50%, -50%)',
-                        transitionDelay: `${300 + i * 150}ms`,
-                        opacity: visible ? 1 : 0,
-                      }}
-                    >
-                      <div className={`${s.color} rounded-full w-[70px] h-[70px] md:w-[105px] md:h-[105px] flex items-center justify-center shadow-md`}>
-                        <p className={`text-[11px] md:text-[12px] font-sans font-medium text-center leading-tight px-2 ${i >= 2 ? "text-primary-foreground" : "text-foreground/70"}`}>
-                          {s.label}
-                        </p>
+                {/* Orbiting circles container */}
+                <div className="absolute inset-0 animate-orbit-nodes">
+                  {steps.map((s, i) => {
+                    const angles = [-90, 0, 90, 180];
+                    const angle = angles[i];
+                    const rad = (angle * Math.PI) / 180;
+                    const radius = 42;
+                    const x = 50 + radius * Math.cos(rad);
+                    const y = 50 + radius * Math.sin(rad);
+                    return (
+                      <div
+                        key={i}
+                        className="absolute z-20 transition-opacity duration-700"
+                        style={{
+                          left: `${x}%`,
+                          top: `${y}%`,
+                          transform: 'translate(-50%, -50%)',
+                          opacity: visible ? 1 : 0,
+                          transitionDelay: `${300 + i * 150}ms`,
+                        }}
+                      >
+                        {/* Counter-rotate so text stays upright */}
+                        <div className="animate-orbit-counter">
+                          <div className={`${s.color} rounded-full w-[70px] h-[70px] md:w-[105px] md:h-[105px] flex items-center justify-center shadow-md`}>
+                            <p className={`text-[11px] md:text-[12px] font-sans font-medium text-center leading-tight px-2 ${i >= 2 ? "text-primary-foreground" : "text-foreground/70"}`}>
+                              {s.label}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
 
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
+                <svg className="absolute inset-0 w-full h-full pointer-events-none animate-orbit-nodes" viewBox="0 0 100 100">
                   {steps.map((_, i) => {
                     const angles = [-90, 0, 90, 180];
                     const rad = (angles[i] * Math.PI) / 180;
@@ -110,8 +121,9 @@ const ProcessSection = () => {
                 </svg>
               </div>
 
+              {/* Mobile-only button below diagram */}
               <a href="#contato"
-                className={`mt-8 inline-block bg-primary text-primary-foreground px-7 py-3 rounded-full text-[13px] font-sans tracking-wide hover:bg-deep transition-all duration-500 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                className={`md:hidden mt-8 inline-block bg-primary text-primary-foreground px-7 py-3 rounded-full text-[13px] font-sans tracking-wide hover:bg-deep transition-all duration-500 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
                 Começar minha jornada
               </a>
             </div>

@@ -38,9 +38,6 @@ const SpecialtiesSection = () => {
               <h2 className="editorial-heading mb-6">
                 Áreas de<br />atuação
               </h2>
-              <span className="hidden md:block text-[8rem] font-serif font-light text-primary/[0.06] leading-none select-none -ml-2">
-                05
-              </span>
             </div>
           </div>
 
