@@ -40,7 +40,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="mt-16 md:mt-24 reveal reveal-d3">
+        <div className="mt-32 md:mt-40 reveal reveal-d3">
           <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-foreground/60 leading-snug text-center max-w-3xl mx-0 my-0 px-0">
             "Você não é difícil de lidar. Você é uma mente que ainda não teve palavras para o que sente."
           </p>
