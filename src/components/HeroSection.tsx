@@ -2,7 +2,7 @@ import heroImage from "@/assets/hero-mind-map.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-5 md:px-10 lg:px-16 pt-24 pb-16">
+    <section className="relative min-h-[85vh] flex flex-col justify-center overflow-hidden px-5 md:px-10 lg:px-16 pt-24 pb-8">
       <div className="absolute inset-0 pointer-events-none">
         <img src={heroImage} alt="" className="w-full h-full object-cover opacity-[0.05]" width={1920} height={1080} />
       </div>
@@ -40,12 +40,10 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="mt-16 md:mt-24 reveal reveal-d3">
-          <div className="py-2 md:py-4">
-            <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-foreground/60 leading-snug text-center max-w-3xl mx-auto">
-              "Você não é difícil de lidar. Você é uma mente que ainda não teve palavras para o que sente."
-            </p>
-          </div>
+        <div className="mt-8 md:mt-12 reveal reveal-d3">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-foreground/60 leading-snug text-center max-w-3xl mx-auto">
+            "Você não é difícil de lidar. Você é uma mente que ainda não teve palavras para o que sente."
+          </p>
         </div>
       </div>
     </section>
