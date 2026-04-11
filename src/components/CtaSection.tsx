@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
-const WHATSAPP_URL = "https://yumepsicologia.com.br/#:~:text=TDAH%20%C2%B7%20TEA%20%C2%B7%20AH-,Conhe%C3%A7a%20a%20Avalia%C3%A7%C3%A3o,-03";
+const WHATSAPP_URL = "http://bit.ly/4tPDjR6";
 
 const CtaSection = () => {
   const { ref, visible } = useScrollReveal(0.2);

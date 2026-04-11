@@ -20,7 +20,7 @@ const HeroSection = () => {
             </h1>
           </div>
 
-          <div className="md:col-span-5 lg:col-span-4 reveal reveal-d2">
+          <div className="md:col-span-5 lg:col-span-4 mt-12 md:mt-0 reveal reveal-d2">
             <div className="glass-card p-8 md:p-10">
               <p className="editorial-body mb-8">
                 Não para te colocar numa caixa.
@@ -41,7 +41,7 @@ const HeroSection = () => {
         </div>
 
         <div className="mt-32 md:mt-40 reveal reveal-d3">
-          <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-foreground/60 leading-snug text-center max-w-3xl mx-0 my-0 px-0">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-foreground/60 leading-snug text-center max-w-3xl mx-auto">
             "Você não é difícil de lidar. Você é uma mente que ainda não teve palavras para o que sente."
           </p>
         </div>
