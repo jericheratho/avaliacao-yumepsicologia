@@ -13,7 +13,7 @@ const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative" style={{ backgroundColor: 'hsl(90, 25%, 92%)' }}>
       {/* Decorative gradient blobs - hidden on mobile for performance */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10 hidden md:block">
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-sage-light/30 blur-[120px] animate-float-blob" />

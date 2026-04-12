@@ -69,6 +69,8 @@
     );
     background-attachment: fixed;
     min-height: 100vh;
+    /* Prevent white flash on overscroll */
+    background-color: hsl(90 25% 92%);
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
