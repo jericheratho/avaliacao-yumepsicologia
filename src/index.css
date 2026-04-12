@@ -67,10 +67,14 @@
       hsl(18 15% 90%) 75%, 
       hsl(102 30% 88%) 100%
     );
-    background-attachment: fixed;
     min-height: 100vh;
     /* Prevent white flash on overscroll */
     background-color: hsl(90 25% 92%);
+  }
+  @media (min-width: 768px) {
+    body {
+      background-attachment: fixed;
+    }
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
