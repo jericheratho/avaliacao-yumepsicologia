@@ -1,19 +1,21 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import IdentificationSection from "@/components/IdentificationSection";
-import AssessmentSection from "@/components/AssessmentSection";
-import SpecialtiesSection from "@/components/SpecialtiesSection";
-import ProcessSection from "@/components/ProcessSection";
-import AboutSection from "@/components/AboutSection";
-import FaqSection from "@/components/FaqSection";
-import CtaSection from "@/components/CtaSection";
-import Footer from "@/components/Footer";
+
+const IdentificationSection = lazy(() => import("@/components/IdentificationSection"));
+const AssessmentSection = lazy(() => import("@/components/AssessmentSection"));
+const SpecialtiesSection = lazy(() => import("@/components/SpecialtiesSection"));
+const ProcessSection = lazy(() => import("@/components/ProcessSection"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const FaqSection = lazy(() => import("@/components/FaqSection"));
+const CtaSection = lazy(() => import("@/components/CtaSection"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      {/* Decorative gradient blobs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+      {/* Decorative gradient blobs - hidden on mobile for performance */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10 hidden md:block">
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-sage-light/30 blur-[120px] animate-float-blob" />
         <div className="absolute top-1/3 -right-40 w-[600px] h-[600px] rounded-full bg-accent/20 blur-[150px] animate-float-blob-2" />
         <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-warm/10 blur-[120px] animate-float-blob-3" />
@@ -22,14 +24,16 @@ const Index = () => {
 
       <Header />
       <HeroSection />
-      <IdentificationSection />
-      <AssessmentSection />
-      <SpecialtiesSection />
-      <ProcessSection />
-      <AboutSection />
-      <FaqSection />
-      <CtaSection />
-      <Footer />
+      <Suspense fallback={null}>
+        <IdentificationSection />
+        <AssessmentSection />
+        <SpecialtiesSection />
+        <ProcessSection />
+        <AboutSection />
+        <FaqSection />
+        <CtaSection />
+        <Footer />
+      </Suspense>
     </div>
   );
 };
