@@ -3,8 +3,8 @@ import heroImage from "@/assets/hero-mind-map.jpg";
 const HeroSection = () => {
   return (
     <section className="relative min-h-[85vh] flex flex-col justify-center overflow-hidden px-5 md:px-10 lg:px-16 pt-24 pb-8">
-      <div className="absolute inset-0 pointer-events-none">
-        <img src={heroImage} alt="" className="w-full h-full object-cover opacity-[0.05]" width={1920} height={1080} />
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
+        <img src={heroImage} alt="" className="w-full h-full object-cover opacity-[0.05]" width={1920} height={1080} loading="eager" decoding="async" fetchPriority="low" />
       </div>
 
       <div className="relative max-w-7xl mx-auto w-full">

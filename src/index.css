@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -148,5 +148,29 @@
 .animate-orbit-reverse { animation: orbitReverse 45s linear infinite; }
 .animate-orbit-nodes { animation: orbitSlow 40s linear infinite; }
 .animate-orbit-counter { animation: orbitReverse 40s linear infinite; }
+
+/* Reduce motion on mobile for performance */
+@media (max-width: 767px) {
+  .animate-float-blob,
+  .animate-float-blob-2,
+  .animate-float-blob-3 { animation: none; }
+  .animate-orbit-slow,
+  .animate-orbit-reverse,
+  .animate-orbit-nodes,
+  .animate-orbit-counter { animation: none; }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-blob,
+  .animate-float-blob-2,
+  .animate-float-blob-3,
+  .animate-orbit-slow,
+  .animate-orbit-reverse,
+  .animate-orbit-nodes,
+  .animate-orbit-counter,
+  .animate-slow-pulse { animation: none; }
+  .reveal { animation: none; opacity: 1; }
+}
 
 html { scroll-behavior: smooth; }
