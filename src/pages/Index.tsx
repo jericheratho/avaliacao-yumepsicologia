@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { ArrowDown, ArrowRight, Check, ChevronDown, Play, Sparkles } from "lucide-react";
 import logo from "@/assets/logo-yume.png";
 import heroImage from "@/assets/hero-mind-map.jpg";
+import portraitImage from "@/assets/ezequias-photo.jpg";
 
 const WHATSAPP_URL = "http://bit.ly/4tPDjR6";
 
@@ -64,11 +65,12 @@ const Index = () => {
             <span className="micro-copy">Um primeiro passo, no seu tempo.</span>
           </div>
         </div>
-        <div className="hero-visual">
-          <div className="hero-image-wrap">
-            <img src={heroImage} alt="Ilustração abstrata de conexões e caminhos da mente" />
-            <div className="hero-note"><Sparkles size={15} /><span>mais clareza<br /><strong>sobre você</strong></span></div>
-          </div>
+        <div className="hero-visual" aria-label="Composição visual sobre autoconhecimento">
+          <div className="hero-card card-pink"><span>clareza</span><Sparkles size={24} /></div>
+          <div className="hero-card card-photo card-photo-top"><img src={portraitImage} alt="Pessoa em um momento de reflexão" /></div>
+          <div className="hero-card card-green"><span>seu mapa<br /><strong>começa aqui</strong></span></div>
+          <div className="hero-card card-mind"><img src={heroImage} alt="Ilustração abstrata de conexões e caminhos da mente" /></div>
+          <div className="hero-card card-note"><span>mais clareza<br /><strong>sobre você</strong></span><ArrowRight size={18} /></div>
           <span className="hero-index">01 <span>/ 04</span></span>
         </div>
       </section>
